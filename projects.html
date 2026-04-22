@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mujeeb Ur Rehman — Projects</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#F7F6F2;--white:#FFFFFF;--ink:#18181B;--muted:#71717A;--accent:#2563EB;--accent-light:#EFF6FF;--border:#E4E4E7;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:var(--white);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;animation:navDrop 0.7s cubic-bezier(0.22,1,0.36,1) both;}
+.logo{font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:8px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.25s;display:flex;align-items:center;gap:8px;}
+.nav-links a i{font-size:14px;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-light);}
+
+.page{max-width:680px;margin:0 auto;padding:88px 24px 80px;}
+
+.page-header{margin-bottom:44px;}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+h1{font-size:34px;font-weight:700;letter-spacing:-1.2px;}
+.page-desc{font-size:15px;color:var(--muted);margin-top:10px;font-weight:300;line-height:1.75;}
+
+.projects-list{display:flex;flex-direction:column;gap:18px;}
+
+.project-card{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:26px 28px;cursor:default;transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;}
+.project-card:hover{border-color:var(--accent);box-shadow:0 6px 28px rgba(37,99,235,0.1);transform:translateY(-4px);}
+
+.project-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.project-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.ico-orange{background:#FFF7ED;border:1px solid #FED7AA;}
+.ico-blue{background:#EFF6FF;border:1px solid #BFDBFE;}
+.ico-green{background:#F0FDF4;border:1px solid #BBF7D0;}
+.project-badge{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:5px 12px;border-radius:100px;border:1px solid var(--border);}
+.project-name{font-size:19px;font-weight:700;letter-spacing:-0.4px;margin-bottom:8px;}
+.project-desc{font-size:14px;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:18px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--accent-light);color:var(--accent);padding:5px 12px;border-radius:7px;}
+
+.empty-card{background:var(--white);border-radius:18px;border:2px dashed var(--border);padding:44px 28px;text-align:center;}
+.empty-icon{font-size:36px;margin-bottom:12px;}
+.empty-card p{font-size:14px;color:var(--muted);font-weight:300;line-height:1.7;}
+
+/* SCROLL ANIMATION */
+.sa{opacity:0;transform:translateY(30px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1);}
+.sa.visible{opacity:1;transform:translateY(0);}
+
+@keyframes navDrop{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  nav{position:fixed;bottom:0;top:auto;left:0;right:0;width:100%;padding:10px 0 14px;border-top:1px solid var(--border);border-bottom:none;background:var(--white);box-shadow:0 -4px 20px rgba(0,0,0,0.05);justify-content:center;animation:none;}
+  .logo{display:none;}
+  .nav-links{width:100%;justify-content:space-around;gap:0;padding:0 6px;}
+  .nav-links a{flex-direction:column;align-items:center;padding:6px 10px;gap:3px;font-size:10px;background:transparent;}
+  .nav-links a span{display:none;}
+  .nav-links a i{font-size:22px;display:block;}
+  .nav-links a.active{color:var(--accent);background:var(--accent-light);border-radius:12px;}
+  .page{padding:24px 20px 100px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MUR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+    <li><a href="about.html"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+    <li><a href="Skill.html"><i class="fa-solid fa-code"></i><span>Skills</span></a></li>
+    <li><a href="projects.html" class="active"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-header sa">
+    <div class="eyebrow">My Projects</div>
+    <h1>University Projects</h1>
+    <p class="page-desc">Class assignments and practice projects I have built while learning.</p>
+  </div>
+
+  <div class="projects-list">
+    <div class="project-card sa" style="transition-delay:0.05s">
+      <div class="project-top">
+        <div class="project-icon ico-orange">🗄️</div>
+        <span class="project-badge">Database</span>
+      </div>
+      <div class="project-name">Student Management System</div>
+      <p class="project-desc">A simple system built with Java and MySQL that stores student information. Implemented full CRUD operations — add, update, delete, and search students.</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">MySQL</span><span class="tag">JDBC</span></div>
+    </div>
+
+    <div class="project-card sa" style="transition-delay:0.1s">
+      <div class="project-top">
+        <div class="project-icon ico-blue">☕</div>
+        <span class="project-badge">Java OOP</span>
+      </div>
+      <div class="project-name">Library Management System</div>
+      <p class="project-desc">A console-based library system built using OOP concepts like inheritance and encapsulation. Users can add, remove, and search for books.</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">OOP</span><span class="tag">Console App</span></div>
+    </div>
+
+    <div class="project-card sa" style="transition-delay:0.15s">
+      <div class="project-top">
+        <div class="project-icon ico-green">🌐</div>
+        <span class="project-badge">Frontend</span>
+      </div>
+      <div class="project-name">Personal Portfolio Website</div>
+      <p class="project-desc">This portfolio website itself — built with HTML and CSS to practice frontend skills and present my work as a student developer.</p>
+      <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+    </div>
+
+    <div class="empty-card sa" style="transition-delay:0.2s">
+      <div class="empty-icon">🚀</div>
+      <p>More projects coming soon...<br>Currently learning and building — stay tuned!</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.sa').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

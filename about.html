@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mujeeb Ur Rehman — About</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#F7F6F2;--white:#FFFFFF;--ink:#18181B;--muted:#71717A;--accent:#2563EB;--accent-light:#EFF6FF;--border:#E4E4E7;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:var(--white);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;animation:navDrop 0.7s cubic-bezier(0.22,1,0.36,1) both;}
+.logo{font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:8px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.25s;display:flex;align-items:center;gap:8px;}
+.nav-links a i{font-size:14px;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-light);}
+
+.page{max-width:680px;margin:0 auto;padding:88px 24px 90px;}
+.mobile-hero{display:none;}
+
+/* DESKTOP BIO */
+.bio-section{display:flex;align-items:center;gap:28px;background:var(--white);border-radius:20px;border:1px solid var(--border);padding:32px;margin-bottom:24px;transition:box-shadow 0.3s;}
+.bio-section:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);}
+.bio-avatar{width:88px;height:88px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#BFDBFE,#93C5FD);border:3px solid var(--white);box-shadow:0 0 0 3px var(--accent);overflow:hidden;}
+.bio-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.bio-text h1{font-size:24px;font-weight:700;letter-spacing:-0.8px;margin-bottom:4px;}
+.bio-text h1 span{color:var(--accent);}
+.bio-role{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+.bio-short{font-size:14px;color:var(--muted);font-weight:300;line-height:1.7;}
+
+/* CARDS */
+.card{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:28px 30px;margin-bottom:20px;transition:box-shadow 0.3s;}
+.card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);}
+.card-title{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.card-title .ic{font-size:16px;}
+.story-text{font-size:15px;color:var(--muted);font-weight:300;line-height:1.85;}
+.story-text p+p{margin-top:14px;}
+.story-text strong{color:var(--ink);font-weight:600;}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.t-item{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid var(--border);transition:background 0.2s;border-radius:8px;padding-left:8px;padding-right:8px;}
+.t-item:last-child{border-bottom:none;}
+.t-item:hover{background:var(--accent-light);}
+.t-left{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:20px;}
+.t-dot{width:10px;height:10px;background:var(--accent);border-radius:50%;margin-top:5px;flex-shrink:0;}
+.t-line{width:2px;flex:1;background:var(--border);}
+.t-item:last-child .t-line{display:none;}
+.t-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.t-sub{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:5px;}
+.t-desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.65;}
+
+/* INTERESTS */
+.interests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.interest-item{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px 16px;text-align:center;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;cursor:default;}
+.interest-item:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 6px 20px rgba(37,99,235,0.1);}
+.interest-icon{font-size:26px;margin-bottom:8px;}
+.interest-name{font-size:13px;font-weight:600;color:var(--ink);}
+.interest-desc{font-size:12px;color:var(--muted);margin-top:3px;font-weight:300;}
+
+/* VALUES */
+.values-list{display:flex;flex-direction:column;gap:12px;}
+.value-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--bg);border-radius:12px;border:1px solid var(--border);transition:border-color 0.2s,transform 0.2s;}
+.value-item:hover{border-color:var(--accent);transform:translateX(4px);}
+.value-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.value-text .vt{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.value-text .vd{font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;}
+
+/* CTA */
+.cta-card{background:var(--accent);border-radius:18px;padding:32px;text-align:center;color:white;transition:transform 0.25s,box-shadow 0.25s;}
+.cta-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(37,99,235,0.3);}
+.cta-card h3{font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;}
+.cta-card p{font-size:14px;opacity:0.8;font-weight:300;line-height:1.7;margin-bottom:24px;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:white;color:var(--accent);padding:12px 26px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.btn-white:hover{background:#F0F9FF;transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.15);color:white;padding:12px 26px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);transition:all 0.2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);}
+
+/* SCROLL ANIMATION */
+.sa{opacity:0;transform:translateY(30px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1);}
+.sa.visible{opacity:1;transform:translateY(0);}
+/* Slide from left variant */
+.sa-left{opacity:0;transform:translateX(-24px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+.sa-left.visible{opacity:1;transform:translateX(0);}
+
+@keyframes navDrop{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.5);}70%{box-shadow:0 0 0 18px rgba(37,99,235,0);}100%{box-shadow:0 0 0 0 rgba(37,99,235,0);}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6);}50%{box-shadow:0 0 0 6px rgba(34,197,94,0);}}
+
+/* MOBILE */
+@media(max-width:600px){
+  nav{position:fixed;bottom:0;top:auto;left:0;right:0;width:100%;padding:10px 0 14px;border-top:1px solid var(--border);border-bottom:none;background:var(--white);box-shadow:0 -4px 20px rgba(0,0,0,0.05);justify-content:center;animation:none;}
+  .logo{display:none;}
+  .nav-links{width:100%;justify-content:space-around;gap:0;padding:0 6px;}
+  .nav-links a{flex-direction:column;align-items:center;padding:6px 10px;gap:3px;font-size:10px;background:transparent;}
+  .nav-links a span{display:none;}
+  .nav-links a i{font-size:22px;display:block;}
+  .nav-links a.active{color:var(--accent);background:var(--accent-light);border-radius:12px;}
+  .page{max-width:100%;padding:0 0 100px;}
+  .bio-section{display:none;}
+  .mobile-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:48px 24px 36px;background:var(--bg);}
+  .mh-avatar-wrap{position:relative;width:156px;height:156px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;}
+  .mh-ring-outer{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(37,99,235,0.30);animation:spin 20s linear infinite;}
+  .mh-ring-inner{position:absolute;inset:10px;border-radius:50%;border:3px solid var(--accent);animation:pulseRing 2.4s ease-out infinite;}
+  .mh-photo{position:relative;width:124px;height:124px;border-radius:50%;overflow:hidden;border:4px solid var(--white);background:linear-gradient(135deg,#BFDBFE,#93C5FD);z-index:1;}
+  .mh-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .mh-dot{position:absolute;bottom:10px;right:10px;width:18px;height:18px;background:#22C55E;border:3px solid var(--white);border-radius:50%;z-index:2;animation:pulseDot 2s infinite;}
+  .mh-badge{display:inline-flex;align-items:center;gap:7px;background:var(--accent-light);color:var(--accent);font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;margin-bottom:22px;}
+  .mh-badge i{color:#F59E0B;font-size:12px;}
+  .mh-title{font-size:36px;font-weight:700;letter-spacing:-1.2px;line-height:1.1;color:var(--ink);margin-bottom:16px;}
+  .mh-title span{color:var(--accent);}
+  .mh-desc{font-size:15px;color:var(--muted);font-weight:300;line-height:1.75;max-width:320px;margin:0 auto 30px;}
+  .mh-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .mh-btn{padding:14px 26px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;}
+  .mh-btn-primary{background:var(--accent);color:white;box-shadow:0 8px 24px rgba(37,99,235,0.28);}
+  .mh-btn-outline{background:var(--white);color:var(--ink);border:1.5px solid var(--border);}
+  .card{padding:22px 18px;border-radius:16px;margin-bottom:16px;margin-left:16px;margin-right:16px;}
+  .card-title{font-size:11px;margin-bottom:14px;}
+  .story-text{font-size:14px;line-height:1.8;}
+  .interests-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .interest-item{padding:16px 12px;border-radius:12px;}
+  .cta-card{padding:28px 20px;border-radius:16px;margin:0 16px;}
+  .cta-card h3{font-size:20px;}
+  .cta-btns{flex-direction:column;gap:10px;}
+  .btn-white,.btn-ghost{width:100%;padding:14px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MUR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+    <li><a href="about.html" class="active"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+    <li><a href="Skill.html"><i class="fa-solid fa-code"></i><span>Skills</span></a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- MOBILE HERO -->
+  <div class="mobile-hero">
+    <div class="mh-avatar-wrap sa">
+      <div class="mh-ring-outer"></div><div class="mh-ring-inner"></div>
+      <div class="mh-photo"><img src="https://media.licdn.com/dms/image/v2/D4E03AQHwe0ePw28DjQ/profile-displayphoto-scale_400_400/B4EZr59exdGUAg-/0/1765130238707?e=1778716800&v=beta&t=laMJgkWpCbV9i-I0qtZIyKHnRWIIhMVHzHhGt0zx_tI" alt="Mujeeb"></div>
+      <div class="mh-dot"></div>
+    </div>
+    <div class="mh-badge sa" style="transition-delay:0.1s"><i class="fa-solid fa-sparkles"></i>Open to Internship &amp; Opportunities</div>
+    <h1 class="mh-title sa" style="transition-delay:0.2s">Hi, I'm <span>Mujeeb<br>Ur Rehman</span></h1>
+    <p class="mh-desc sa" style="transition-delay:0.3s">Computer Science student at UMT Lahore. Passionate about Java programming, databases, and building things from scratch.</p>
+    <div class="mh-btns sa" style="transition-delay:0.4s">
+      <a href="projects.html" class="mh-btn mh-btn-primary">View Projects →</a>
+      <a href="contact.html" class="mh-btn mh-btn-outline">Contact Me</a>
+    </div>
+  </div>
+
+  <!-- DESKTOP BIO -->
+  <div class="bio-section sa">
+    <div class="bio-avatar"><img src="https://media.licdn.com/dms/image/v2/D4E03AQHwe0ePw28DjQ/profile-displayphoto-scale_400_400/B4EZr59exdGUAg-/0/1765130238707?e=1778716800&v=beta&t=laMJgkWpCbV9i-I0qtZIyKHnRWIIhMVHzHhGt0zx_tI" alt="Mujeeb Profile"></div>
+    <div class="bio-text">
+      <div class="bio-role">CS Student · Fresher</div>
+      <h1>Mujeeb <span>Ur Rehman</span></h1>
+      <p class="bio-short">Java programmer and database enthusiast studying at UMT Lahore. I love solving problems and building things from scratch.</p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="card sa" style="transition-delay:0.05s">
+    <div class="card-title"><span class="ic">📖</span> My Story</div>
+    <div class="story-text">
+      <p>I'm a <strong>Computer Science student at UMT Lahore</strong> with a strong interest in software development. My journey into programming started with Java, where I fell in love with the logic of writing code and seeing it come to life.</p>
+      <p>As a <strong>fresher</strong>, I may not have years of work experience — but I bring curiosity, dedication, and a genuine passion for learning. Every project I build, no matter how small, teaches me something new.</p>
+      <p>I believe the best developers are the ones who never stop learning. That's exactly the mindset I carry into everything I do.</p>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="card sa" style="transition-delay:0.05s">
+    <div class="card-title"><span class="ic">🎓</span> Education</div>
+    <div class="timeline">
+      <div class="t-item sa-left" style="transition-delay:0.0s">
+        <div class="t-left"><div class="t-dot"></div><div class="t-line"></div></div>
+        <div><div class="t-title">BS Computer Science</div><div class="t-sub">University of Management and Technology (UMT) — Lahore</div><div class="t-desc">Currently enrolled. Studying core CS subjects including data structures, algorithms, database systems, and OOP with Java.</div></div>
+      </div>
+      <div class="t-item sa-left" style="transition-delay:0.1s">
+        <div class="t-left"><div class="t-dot"></div><div class="t-line"></div></div>
+        <div><div class="t-title">Intermediate (FSc / ICS)</div><div class="t-sub">Lahore, Pakistan</div><div class="t-desc">Completed pre-engineering / computer science studies. Built early interest in programming and problem solving.</div></div>
+      </div>
+      <div class="t-item sa-left" style="transition-delay:0.2s">
+        <div class="t-left"><div class="t-dot"></div></div>
+        <div><div class="t-title">Matriculation</div><div class="t-sub">Lahore, Pakistan</div><div class="t-desc">Completed secondary education with a focus on science and mathematics.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERESTS -->
+  <div class="card sa" style="transition-delay:0.05s">
+    <div class="card-title"><span class="ic">💡</span> Interests</div>
+    <div class="interests-grid">
+      <div class="interest-item sa" style="transition-delay:0.0s"><div class="interest-icon">☕</div><div class="interest-name">Java Dev</div><div class="interest-desc">OOP &amp; clean code</div></div>
+      <div class="interest-item sa" style="transition-delay:0.08s"><div class="interest-icon">🗄️</div><div class="interest-name">Databases</div><div class="interest-desc">MySQL &amp; SQL design</div></div>
+      <div class="interest-item sa" style="transition-delay:0.16s"><div class="interest-icon">🌐</div><div class="interest-name">Web Dev</div><div class="interest-desc">HTML, CSS basics</div></div>
+      <div class="interest-item sa" style="transition-delay:0.24s"><div class="interest-icon">🧩</div><div class="interest-name">Problem Solving</div><div class="interest-desc">Logic &amp; algorithms</div></div>
+      <div class="interest-item sa" style="transition-delay:0.32s"><div class="interest-icon">📚</div><div class="interest-name">Learning</div><div class="interest-desc">Always growing</div></div>
+      <div class="interest-item sa" style="transition-delay:0.40s"><div class="interest-icon">🤝</div><div class="interest-name">Teamwork</div><div class="interest-desc">Collaborate &amp; build</div></div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="card sa" style="transition-delay:0.05s">
+    <div class="card-title"><span class="ic">⭐</span> What I Believe In</div>
+    <div class="values-list">
+      <div class="value-item sa" style="transition-delay:0.0s"><div class="value-icon">🎯</div><div class="value-text"><div class="vt">Keep It Simple</div><div class="vd">Good code is easy to read and understand. I aim to write clean, simple solutions rather than complex ones.</div></div></div>
+      <div class="value-item sa" style="transition-delay:0.1s"><div class="value-icon">🌱</div><div class="value-text"><div class="vt">Never Stop Learning</div><div class="vd">Technology changes fast. I try to learn something new every day, whether it's a concept, a tool, or a better way of thinking.</div></div></div>
+      <div class="value-item sa" style="transition-delay:0.2s"><div class="value-icon">💪</div><div class="value-text"><div class="vt">Embrace Being a Beginner</div><div class="vd">I'm a fresher and proud of it. Every expert was once a beginner. I ask questions, make mistakes, and grow from them.</div></div></div>
+      <div class="value-item sa" style="transition-delay:0.3s"><div class="value-icon">🤝</div><div class="value-text"><div class="vt">Collaborate &amp; Share</div><div class="vd">The best things are built together. I enjoy working in teams and sharing knowledge with fellow students and developers.</div></div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card sa">
+    <h3>Let's Work Together 🚀</h3>
+    <p>I'm looking for internship opportunities where I can contribute, learn, and grow as a developer. If you have an opportunity or just want to connect, I'd love to hear from you.</p>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-white">Get In Touch →</a>
+      <a href="projects.html" class="btn-ghost">View My Projects</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, {threshold:0.1});
+document.querySelectorAll('.sa, .sa-left').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

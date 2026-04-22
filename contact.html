@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mujeeb Ur Rehman — Contact</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#F7F6F2;--white:#FFFFFF;--ink:#18181B;--muted:#71717A;--accent:#2563EB;--accent-light:#EFF6FF;--border:#E4E4E7;--green:#16A34A;--green-light:#F0FDF4;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:var(--white);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;animation:navDrop 0.7s cubic-bezier(0.22,1,0.36,1) both;}
+.logo{font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:8px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.25s;display:flex;align-items:center;gap:8px;}
+.nav-links a i{font-size:14px;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-light);}
+
+.page{max-width:600px;margin:0 auto;padding:88px 24px 80px;}
+
+.page-header{margin-bottom:36px;text-align:center;}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+h1{font-size:34px;font-weight:700;letter-spacing:-1.2px;}
+.page-desc{font-size:15px;color:var(--muted);margin-top:10px;font-weight:300;line-height:1.75;}
+
+.status-card{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:18px 22px;margin-bottom:22px;display:flex;align-items:center;gap:12px;transition:box-shadow 0.3s;}
+.status-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.dot{width:10px;height:10px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:pulseDot 2s infinite;}
+.status-text{font-size:14px;color:var(--muted);}
+.status-text strong{color:var(--ink);}
+
+.links-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.contact-link{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);transition:border-color 0.25s,box-shadow 0.25s,transform 0.25s;}
+.contact-link:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(37,99,235,0.09);transform:translateX(4px);}
+.link-icon{font-size:22px;width:38px;text-align:center;flex-shrink:0;}
+.link-info{flex:1;}
+.link-lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+.link-val{font-size:14px;font-weight:500;margin-top:2px;}
+.link-arrow{color:var(--muted);font-size:18px;transition:transform 0.2s;}
+.contact-link:hover .link-arrow{transform:translateX(4px);color:var(--accent);}
+
+.form-card{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:28px;transition:box-shadow 0.3s;}
+.form-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.07);}
+.form-title{font-size:16px;font-weight:600;margin-bottom:22px;}
+.form-group{margin-bottom:16px;}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;}
+input,textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-family:'Sora',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color 0.25s,box-shadow 0.25s;resize:vertical;}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.1);}
+textarea{min-height:110px;}
+.btn-send{width:100%;background:var(--accent);color:white;padding:14px;border-radius:10px;border:none;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.25s;letter-spacing:0.02em;box-shadow:0 4px 14px rgba(37,99,235,0.3);}
+.btn-send:hover{background:#1D4ED8;transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,99,235,0.35);}
+.btn-send:active{transform:translateY(0);}
+.success-msg{display:none;background:var(--green-light);border:1px solid #BBF7D0;border-radius:10px;padding:14px 18px;color:var(--green);font-size:14px;font-weight:500;text-align:center;margin-top:14px;}
+
+/* SCROLL ANIMATION */
+.sa{opacity:0;transform:translateY(28px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1);}
+.sa.visible{opacity:1;transform:translateY(0);}
+/* Slide from left for contact links */
+.sa-left{opacity:0;transform:translateX(-22px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+.sa-left.visible{opacity:1;transform:translateX(0);}
+
+@keyframes navDrop{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5);}50%{box-shadow:0 0 0 6px rgba(34,197,94,0);}}
+
+@media(max-width:600px){
+  nav{position:fixed;bottom:0;top:auto;left:0;right:0;width:100%;padding:10px 0 14px;border-top:1px solid var(--border);border-bottom:none;background:var(--white);box-shadow:0 -4px 20px rgba(0,0,0,0.05);justify-content:center;animation:none;}
+  .logo{display:none;}
+  .nav-links{width:100%;justify-content:space-around;gap:0;padding:0 6px;}
+  .nav-links a{flex-direction:column;align-items:center;padding:6px 10px;gap:3px;font-size:10px;background:transparent;}
+  .nav-links a span{display:none;}
+  .nav-links a i{font-size:22px;display:block;}
+  .nav-links a.active{color:var(--accent);background:var(--accent-light);border-radius:12px;}
+  .page{padding:24px 20px 100px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MUR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+    <li><a href="about.html"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+    <li><a href="Skill.html"><i class="fa-solid fa-code"></i><span>Skills</span></a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
+    <li><a href="contact.html" class="active"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-header sa">
+    <div class="eyebrow">Get In Touch</div>
+    <h1>Let's Connect 👋</h1>
+    <p class="page-desc">Looking for an internship or collaboration? Feel free to reach out!</p>
+  </div>
+
+  <div class="status-card sa" style="transition-delay:0.1s">
+    <div class="dot"></div>
+    <div class="status-text"><strong>Available</strong> — Open for internships and part-time work</div>
+  </div>
+
+  <div class="links-list">
+    <a href="mailto:m.mujeebtech@gmail.com" class="contact-link sa-left" style="transition-delay:0.0s">
+      <div class="link-icon">✉️</div>
+      <div class="link-info"><div class="link-lbl">Email</div><div class="link-val">m.mujeebtech@gmail.com</div></div>
+      <div class="link-arrow">→</div>
+    </a>
+    <a href="https://www.linkedin.com/in/mujeebtechcode/" class="contact-link sa-left" style="transition-delay:0.08s">
+      <div class="link-icon">💼</div>
+      <div class="link-info"><div class="link-lbl">LinkedIn</div><div class="link-val">mujeebtechcode</div></div>
+      <div class="link-arrow">→</div>
+    </a>
+    <a href="https://github.com/mujeeb-techcode" class="contact-link sa-left" style="transition-delay:0.16s" target="_blank">
+      <div class="link-icon">🐙</div>
+      <div class="link-info"><div class="link-lbl">GitHub</div><div class="link-val">mujeeb-techcode</div></div>
+      <div class="link-arrow">→</div>
+    </a>
+    <a href="#" class="contact-link sa-left" style="transition-delay:0.24s">
+      <div class="link-icon">📍</div>
+      <div class="link-info"><div class="link-lbl">Location</div><div class="link-val">Lahore, Pakistan</div></div>
+      <div class="link-arrow">—</div>
+    </a>
+  </div>
+
+  <div class="form-card sa" style="transition-delay:0.1s">
+    <div class="form-title">Send a Message</div>
+    <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Ali Ahmed" id="fname"></div>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="ali@example.com" id="femail"></div>
+    <div class="form-group"><label>Message</label><textarea placeholder="Your message here..." id="fmsg"></textarea></div>
+    <button class="btn-send" onclick="sendMsg()">Send Message ✉️</button>
+    <div class="success-msg" id="success">✅ Thanks! I'll get back to you soon.</div>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+  }, {threshold:0.1});
+  document.querySelectorAll('.sa, .sa-left').forEach(el => observer.observe(el));
+
+  function sendMsg(){
+    const n = document.getElementById('fname').value.trim();
+    const e = document.getElementById('femail').value.trim();
+    const m = document.getElementById('fmsg').value.trim();
+    if(!n || !e || !m){
+      document.querySelectorAll('input,textarea').forEach(el => { if(!el.value.trim()) el.style.borderColor='#EF4444'; });
+      return;
+    }
+    document.getElementById('success').style.display = 'block';
+    document.getElementById('fname').value = '';
+    document.getElementById('femail').value = '';
+    document.getElementById('fmsg').value = '';
+    document.querySelectorAll('input,textarea').forEach(el => el.style.borderColor='');
+  }
+  document.querySelectorAll('input,textarea').forEach(el => { el.addEventListener('input', () => el.style.borderColor=''); });
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mujeeb Ur Rehman — Skills</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#F7F6F2;--white:#FFFFFF;--ink:#18181B;--muted:#71717A;--accent:#2563EB;--accent-light:#EFF6FF;--border:#E4E4E7;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:var(--white);border-bottom:1px solid var(--border);position:fixed;top:0;left:0;right:0;z-index:100;animation:navDrop 0.7s cubic-bezier(0.22,1,0.36,1) both;}
+.logo{font-weight:700;font-size:18px;color:var(--ink);text-decoration:none;letter-spacing:-0.5px;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:8px;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.25s;display:flex;align-items:center;gap:8px;}
+.nav-links a i{font-size:14px;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-light);}
+
+.page{max-width:680px;margin:0 auto;padding:88px 24px 80px;}
+
+.page-header{margin-bottom:44px;}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+h1{font-size:34px;font-weight:700;letter-spacing:-1.2px;}
+.page-desc{font-size:15px;color:var(--muted);margin-top:10px;font-weight:300;line-height:1.75;}
+
+.section{margin-bottom:28px;}
+.section-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.section-label .ic{font-size:16px;}
+
+.card{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:8px 0;overflow:hidden;transition:box-shadow 0.3s;}
+.card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.07);}
+
+.skill-row{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);transition:background 0.2s;}
+.skill-row:last-child{border-bottom:none;}
+.skill-row:hover{background:var(--accent-light);}
+.skill-left{display:flex;align-items:center;gap:10px;}
+.skill-icon{font-size:20px;}
+.skill-name{font-size:15px;font-weight:500;}
+.skill-right{display:flex;align-items:center;gap:14px;}
+.bar-wrap{width:110px;height:7px;background:var(--bg);border-radius:100px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--accent);border-radius:100px;width:0;transition:width 1.1s cubic-bezier(0.22,1,0.36,1);}
+.level-text{font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;min-width:70px;text-align:right;}
+
+.learning-card{background:var(--white);border-radius:18px;border:1px solid var(--border);padding:24px;transition:box-shadow 0.3s;}
+.learning-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.07);}
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{background:var(--accent-light);color:var(--accent);font-size:13px;font-weight:500;padding:7px 16px;border-radius:9px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;}
+.tag:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,0.15);}
+
+/* SCROLL ANIMATION */
+.sa{opacity:0;transform:translateY(30px);transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1),transform 0.65s cubic-bezier(0.22,1,0.36,1);}
+.sa.visible{opacity:1;transform:translateY(0);}
+.sa-left{opacity:0;transform:translateX(-20px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1);}
+.sa-left.visible{opacity:1;transform:translateX(0);}
+
+@keyframes navDrop{from{opacity:0;transform:translateY(-100%);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  nav{position:fixed;bottom:0;top:auto;left:0;right:0;width:100%;padding:10px 0 14px;border-top:1px solid var(--border);border-bottom:none;background:var(--white);box-shadow:0 -4px 20px rgba(0,0,0,0.05);justify-content:center;animation:none;}
+  .logo{display:none;}
+  .nav-links{width:100%;justify-content:space-around;gap:0;padding:0 6px;}
+  .nav-links a{flex-direction:column;align-items:center;padding:6px 10px;gap:3px;font-size:10px;background:transparent;}
+  .nav-links a span{display:none;}
+  .nav-links a i{font-size:22px;display:block;}
+  .nav-links a.active{color:var(--accent);background:var(--accent-light);border-radius:12px;}
+  .page{padding:24px 20px 100px;}
+  .bar-wrap{width:70px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">MUR<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+    <li><a href="about.html"><i class="fa-solid fa-user"></i><span>About</span></a></li>
+    <li><a href="Skill.html" class="active"><i class="fa-solid fa-code"></i><span>Skills</span></a></li>
+    <li><a href="projects.html"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></a></li>
+    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i><span>Contact</span></a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-header sa">
+    <div class="eyebrow">My Skills</div>
+    <h1>What I Know</h1>
+    <p class="page-desc">I'm currently a student — here's an honest breakdown of my skills so far.</p>
+  </div>
+
+  <div class="section sa" style="transition-delay:0.1s">
+    <div class="section-label sa-left"><span class="ic">☕</span> Programming Language</div>
+    <div class="card">
+      <div class="skill-row">
+        <div class="skill-left"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
+        <div class="skill-right"><div class="bar-wrap"><div class="bar-fill" data-width="70"></div></div><span class="level-text">Intermediate</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section sa" style="transition-delay:0.1s">
+    <div class="section-label sa-left"><span class="ic">🗄️</span> Database</div>
+    <div class="card">
+      <div class="skill-row">
+        <div class="skill-left"><span class="skill-icon">🐬</span><span class="skill-name">MySQL</span></div>
+        <div class="skill-right"><div class="bar-wrap"><div class="bar-fill" data-width="65"></div></div><span class="level-text">Intermediate</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-left"><span class="skill-icon">📋</span><span class="skill-name">SQL Queries</span></div>
+        <div class="skill-right"><div class="bar-wrap"><div class="bar-fill" data-width="60"></div></div><span class="level-text">Intermediate</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section sa" style="transition-delay:0.1s">
+    <div class="section-label sa-left"><span class="ic">🌐</span> Frontend (Basic)</div>
+    <div class="card">
+      <div class="skill-row">
+        <div class="skill-left"><span class="skill-icon">🌐</span><span class="skill-name">HTML</span></div>
+        <div class="skill-right"><div class="bar-wrap"><div class="bar-fill" data-width="55"></div></div><span class="level-text">Basic</span></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-left"><span class="skill-icon">🎨</span><span class="skill-name">CSS</span></div>
+        <div class="skill-right"><div class="bar-wrap"><div class="bar-fill" data-width="45"></div></div><span class="level-text">Basic</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section sa" style="transition-delay:0.1s">
+    <div class="section-label sa-left"><span class="ic">📚</span> Currently Learning</div>
+    <div class="learning-card">
+      <div class="tags">
+        <span class="tag sa" style="transition-delay:0.0s">🔄 Data Structures</span>
+        <span class="tag sa" style="transition-delay:0.08s">⚙️ OOP Concepts</span>
+        <span class="tag sa" style="transition-delay:0.16s">🌐 JavaScript</span>
+        <span class="tag sa" style="transition-delay:0.24s">🗃️ Database Design</span>
+        <span class="tag sa" style="transition-delay:0.32s">🧮 Algorithms</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+  }, {threshold:0.1});
+  document.querySelectorAll('.sa, .sa-left').forEach(el => observer.observe(el));
+
+  // Bar animation when card enters viewport
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 300 + i * 150);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.3});
+  document.querySelectorAll('.card').forEach(c => barObserver.observe(c));
+</script>
+</body>
+</html>
