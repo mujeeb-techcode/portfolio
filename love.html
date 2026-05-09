@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forever Yours — A Love Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --rose: #c0394b; --rose-light: #e8b4bb; --rose-pale: #fdf0f2;
+    --gold: #c9a84c; --gold-light: #f0dfa0; --deep: #1a0a0f;
+    --cream: #fef9f4; --text: #2d0f18; --muted: #8a5a63;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'Cormorant Garamond', serif; font-size: 18px; overflow-x: hidden; cursor: none; }
+  #cursor { position: fixed; width: 14px; height: 14px; background: var(--rose); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: multiply; }
+  #cursor-ring { position: fixed; width: 38px; height: 38px; border: 1.5px solid var(--rose); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); opacity: 0.5; }
+  #petal-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .petal { position: absolute; top: -40px; width: 14px; height: 20px; background: radial-gradient(ellipse at 30% 30%, #f7c5cc, #d4566a 80%); border-radius: 0 70% 70% 0 / 0 100% 100% 0; opacity: 0; animation: petalFall linear infinite; }
+  @keyframes petalFall { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 90% { opacity: 0.5; } 100% { transform: translateY(105vh) rotate(360deg) translateX(60px); opacity: 0; } }
+  #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; z-index: 1; overflow: hidden; }
+  #hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(192,57,75,0.12), transparent), radial-gradient(ellipse 60% 50% at 20% 100%, rgba(201,168,76,0.08), transparent); z-index: -1; }
+  .hero-eyebrow { font-weight: 300; font-style: italic; font-size: 1rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3.2rem, 9vw, 7.5rem); font-weight: 700; line-height: 1.05; color: var(--deep); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 1s 0.6s forwards; }
+  .hero-title em { font-style: italic; color: var(--rose); position: relative; }
+  .hero-title em::after { content: ''; position: absolute; bottom: 6px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--rose), transparent); border-radius: 2px; }
+  .hero-sub { font-size: 1.25rem; font-style: italic; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+  .btn-scroll { display: inline-flex; align-items: center; gap: 10px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 4px; opacity: 0; animation: fadeUp 1s 1.2s forwards; transition: color 0.3s, gap 0.3s; }
+  .btn-scroll:hover { gap: 16px; color: var(--deep); }
+  .hero-heart { position: absolute; bottom: -80px; right: -80px; width: 380px; opacity: 0.04; z-index: -1; animation: floatHeart 8s ease-in-out infinite; }
+  @keyframes floatHeart { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-22px) rotate(-7deg); } }
+  .heartbeat-line { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); opacity: 0; animation: fadeUp 1s 1.5s forwards; }
+  .heartbeat-line svg { width: 260px; height: 50px; }
+  .hb-path { stroke: var(--rose); stroke-width: 2; fill: none; stroke-dasharray: 700; stroke-dashoffset: 700; animation: drawHB 2s 2s ease forwards; }
+  @keyframes drawHB { to { stroke-dashoffset: 0; } }
+  .ornament { display: flex; align-items: center; gap: 16px; justify-content: center; margin: 60px auto; color: var(--gold); font-size: 1.2rem; opacity: 0.6; }
+  .ornament::before, .ornament::after { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  section { position: relative; z-index: 1; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  #quotes { padding: 80px 0; background: linear-gradient(180deg, transparent, rgba(192,57,75,0.04), transparent); }
+  .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 620px) { .quote-grid { grid-template-columns: 1fr; } }
+  .quote-card { background: white; border: 1px solid rgba(192,57,75,0.15); border-radius: 4px; padding: 40px 36px; position: relative; overflow: hidden; transition: transform 0.4s, box-shadow 0.4s; }
+  .quote-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(192,57,75,0.12); }
+  .quote-card::before { content: '\201C'; position: absolute; top: -10px; left: 20px; font-family: 'Playfair Display', serif; font-size: 7rem; color: var(--rose-light); line-height: 1; pointer-events: none; }
+  .quote-text { font-style: italic; font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-bottom: 20px; position: relative; z-index: 1; }
+  .quote-author { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-style: normal; font-weight: 400; }
+  #letter { padding: 80px 0; }
+  .letter-wrap { max-width: 640px; margin: 0 auto; background: white; border: 1px solid rgba(201,168,76,0.2); border-radius: 2px; padding: 60px 64px; position: relative; box-shadow: 0 4px 40px rgba(0,0,0,0.04), 0 2px 0 var(--gold-light) inset; }
+  @media (max-width: 620px) { .letter-wrap { padding: 40px 28px; } }
+  .letter-wrap::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: linear-gradient(90deg, var(--rose), var(--gold)); }
+  .letter-date { font-style: italic; color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
+  .letter-body { font-size: 1.1rem; line-height: 2; color: var(--text); }
+  .letter-body p { margin-bottom: 1.2em; }
+  .letter-sign { margin-top: 32px; text-align: right; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: var(--rose); }
+  #heartbeat { padding: 80px 0; text-align: center; background: var(--deep); color: white; overflow: hidden; position: relative; }
+  #heartbeat::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(192,57,75,0.3), transparent); }
+  .hb-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; font-style: italic; margin-bottom: 12px; position: relative; z-index: 1; }
+  .hb-sub { color: rgba(255,255,255,0.5); font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 48px; position: relative; z-index: 1; }
+  #big-heart { cursor: pointer; display: inline-block; position: relative; z-index: 1; animation: heartPulse 1.4s ease-in-out infinite; }
+  @keyframes heartPulse { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.15); } 28% { transform: scale(1); } 42% { transform: scale(1.08); } 56% { transform: scale(1); } }
+  #big-heart svg { width: 140px; height: 130px; filter: drop-shadow(0 0 30px rgba(192,57,75,0.6)); }
+  #big-heart:active { transform: scale(0.92); }
+  #click-count { margin-top: 24px; font-size: 1rem; color: rgba(255,255,255,0.6); font-style: italic; position: relative; z-index: 1; min-height: 28px; }
+  .pop-heart { position: absolute; font-size: 1.6rem; pointer-events: none; z-index: 5; animation: popFloat 1.4s ease forwards; }
+  @keyframes popFloat { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
+  #reasons { padding: 80px 0; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; text-align: center; margin-bottom: 56px; color: var(--deep); }
+  .section-title span { font-style: italic; color: var(--rose); }
+  .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 700px) { .reasons-grid { grid-template-columns: 1fr; } }
+  .reason-card { text-align: center; padding: 36px 24px; border-top: 2px solid var(--rose-light); transition: border-color 0.4s; }
+  .reason-card:hover { border-color: var(--rose); }
+  .reason-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--rose-light); font-weight: 700; line-height: 1; margin-bottom: 12px; display: block; transition: color 0.4s; }
+  .reason-card:hover .reason-num { color: var(--rose); }
+  .reason-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--deep); }
+  .reason-body { font-size: 0.95rem; line-height: 1.75; color: var(--muted); font-style: italic; }
+  #music { padding: 80px 0; background: var(--rose-pale); text-align: center; }
+  .player-card { max-width: 400px; margin: 0 auto; background: white; border-radius: 20px; padding: 40px 36px; box-shadow: 0 8px 60px rgba(192,57,75,0.1); }
+  .player-vinyl { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 28px; background: conic-gradient(#1a0a0f 0 10deg, #c0394b 10deg 20deg, #1a0a0f 20deg 30deg, #c0394b 30deg 40deg, #1a0a0f 40deg 50deg, #c0394b 50deg 60deg, #1a0a0f 60deg 120deg, #c0394b 120deg 140deg, #1a0a0f 140deg 240deg, #c0394b 240deg 260deg, #1a0a0f 260deg 360deg); position: relative; animation: spinVinyl 4s linear infinite; animation-play-state: paused; }
+  .player-vinyl.playing { animation-play-state: running; }
+  .player-vinyl::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px; background: white; border-radius: 50%; border: 4px solid #f3d0d5; }
+  @keyframes spinVinyl { to { transform: rotate(360deg); } }
+  .player-song { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--deep); margin-bottom: 4px; }
+  .player-artist { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 24px; letter-spacing: 0.08em; }
+  .player-progress { width: 100%; height: 4px; background: #f0d0d5; border-radius: 4px; margin-bottom: 12px; overflow: hidden; cursor: pointer; }
+  .player-bar { height: 100%; background: linear-gradient(90deg, var(--rose), var(--gold)); border-radius: 4px; width: 0%; transition: width 0.5s linear; }
+  .player-time { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; }
+  .player-controls { display: flex; align-items: center; justify-content: center; gap: 24px; }
+  .ctrl-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 1.4rem; transition: color 0.3s, transform 0.2s; padding: 8px; }
+  .ctrl-btn:hover { color: var(--rose); transform: scale(1.15); }
+  .play-btn { background: var(--rose); color: white; border-radius: 50%; width: 54px; height: 54px; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(192,57,75,0.4); transition: background 0.3s, transform 0.2s; }
+  .play-btn:hover { background: #a02c3e; transform: scale(1.08); }
+  #gallery { padding: 80px 0; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 620px) { .gallery-grid { grid-template-columns: 1fr 1fr; } }
+  .gallery-cell { border-radius: 8px; overflow: hidden; min-height: 180px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.4s; }
+  .gallery-cell:hover { transform: scale(1.03) rotate(0.5deg); }
+  .gallery-cell:nth-child(1) { grid-row: span 2; min-height: 376px; }
+  .cell-inner { text-align: center; padding: 24px; }
+  .cell-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .cell-label { font-family: 'Playfair Display', serif; font-style: italic; color: var(--rose); font-size: 1rem; }
+  footer { padding: 80px 24px 60px; text-align: center; background: var(--cream); position: relative; z-index: 1; }
+  footer .footer-heart { font-size: 2.5rem; display: block; margin-bottom: 20px; animation: footerPulse 1.8s ease-in-out infinite; }
+  @keyframes footerPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+  footer p { font-style: italic; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+  footer strong { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--rose); font-style: normal; }
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="petal-canvas"></div>
+
+<section id="hero">
+  <p class="hero-eyebrow">A love letter to you</p>
+  <h1 class="hero-title">You are my<br><em>forever</em></h1>
+  <p class="hero-sub">Every moment with you is a poem I never want to stop reading.</p>
+  <a href="#quotes" class="btn-scroll">Explore our story &rarr;</a>
+  <div class="heartbeat-line">
+    <svg viewBox="0 0 260 50">
+      <path class="hb-path" d="M0,25 L40,25 L55,5 L65,45 L75,10 L85,40 L95,25 L260,25"/>
+    </svg>
+  </div>
+  <svg class="hero-heart" viewBox="0 0 100 90" fill="none">
+    <path d="M50 85 C20 65 0 50 0 30 C0 15 10 5 25 5 C35 5 44 11 50 20 C56 11 65 5 75 5 C90 5 100 15 100 30 C100 50 80 65 50 85Z" fill="var(--rose)"/>
+  </svg>
+</section>
+
+<section id="quotes">
+  <div class="container">
+    <div class="ornament">✦</div>
+    <div class="quote-grid">
+      <div class="quote-card reveal">
+        <p class="quote-text">In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.</p>
+        <span class="quote-author">— Maya Angelou</span>
+      </div>
+      <div class="quote-card reveal reveal-delay-1">
+        <p class="quote-text">I have waited for this opportunity for more than half a century, to repeat to you once again my vow of eternal fidelity and everlasting love.</p>
+        <span class="quote-author">— Gabriel García Márquez</span>
+      </div>
+      <div class="quote-card reveal">
+        <p class="quote-text">Whatever our souls are made of, his and mine are the same.</p>
+        <span class="quote-author">— Emily Brontë</span>
+      </div>
+      <div class="quote-card reveal reveal-delay-1">
+        <p class="quote-text">I am not afraid of storms, for I am learning how to sail my ship.</p>
+        <span class="quote-author">— Louisa May Alcott</span>
+      </div>
+    </div>
+    <div class="ornament">✦</div>
+  </div>
+</section>
+
+<section id="letter">
+  <div class="container">
+    <h2 class="section-title reveal">A <span>letter</span> from the heart</h2>
+    <div class="letter-wrap reveal">
+      <p class="letter-date">Always and forever,</p>
+      <div class="letter-body">
+        <p>My dearest love,</p>
+        <p>There are moments when I look at you and I am completely undone by the simple fact of your existence. The way you laugh — fully, completely, without apology — is the most beautiful sound I have ever heard.</p>
+        <p>You have taught me that love is not grand gestures or poetry written in the stars. Love is the quiet mornings, the gentle silences, the knowing glances across a crowded room that say <em>I see you, and I choose you, every single time.</em></p>
+        <p>You are my home. You are my peace. You are every reason I believe in beautiful things.</p>
+        <p>This is my promise: I will keep choosing you, in every version of myself, across every possible life.</p>
+      </div>
+      <p class="letter-sign">Yours always ♡</p>
+    </div>
+  </div>
+</section>
+
+<section id="heartbeat">
+  <h2 class="hb-title">How much do I love you?</h2>
+  <p class="hb-sub">Click the heart to find out</p>
+  <div id="big-heart" onclick="heartClick(event)">
+    <svg viewBox="0 0 100 90" fill="none">
+      <path d="M50 85 C20 65 0 50 0 30 C0 13 12 0 28 0 C37 0 45 5 50 14 C55 5 63 0 72 0 C88 0 100 13 100 30 C100 50 80 65 50 85Z" fill="#c0394b"/>
+    </svg>
+  </div>
+  <p id="click-count"></p>
+</section>
+
+<section id="reasons">
+  <div class="container">
+    <h2 class="section-title reveal">Reasons I love <span>you</span></h2>
+    <div class="reasons-grid">
+      <div class="reason-card reveal">
+        <span class="reason-num">01</span>
+        <p class="reason-title">Your laughter</p>
+        <p class="reason-body">It fills every room and reminds me that joy is the simplest and greatest magic.</p>
+      </div>
+      <div class="reason-card reveal reveal-delay-1">
+        <span class="reason-num">02</span>
+        <p class="reason-title">Your kindness</p>
+        <p class="reason-body">The gentle way you treat every soul you meet tells me everything about your heart.</p>
+      </div>
+      <div class="reason-card reveal reveal-delay-2">
+        <span class="reason-num">03</span>
+        <p class="reason-title">Your mind</p>
+        <p class="reason-body">Conversations with you feel like travelling to places I've never dreamed of before.</p>
+      </div>
+      <div class="reason-card reveal">
+        <span class="reason-num">04</span>
+        <p class="reason-title">Your patience</p>
+        <p class="reason-body">You wait for me, even when I am slow, even when I am afraid.</p>
+      </div>
+      <div class="reason-card reveal reveal-delay-1">
+        <span class="reason-num">05</span>
+        <p class="reason-title">Your courage</p>
+        <p class="reason-body">You face the world with a quiet bravery that takes my breath away every day.</p>
+      </div>
+      <div class="reason-card reveal reveal-delay-2">
+        <span class="reason-num">06</span>
+        <p class="reason-title">Simply you</p>
+        <p class="reason-body">Not a version of you. Not a future you. You, exactly as you are, right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="music">
+  <div class="container">
+    <h2 class="section-title reveal">Our <span>song</span></h2>
+    <div class="player-card reveal">
+      <div class="player-vinyl" id="vinyl"></div>
+      <p class="player-song">Can't Help Falling in Love</p>
+      <p class="player-artist">Elvis Presley</p>
+      <div class="player-progress" id="progress-bar">
+        <div class="player-bar" id="player-bar-fill"></div>
+      </div>
+      <div class="player-time">
+        <span id="curr-time">0:00</span>
+        <span>3:01</span>
+      </div>
+      <div class="player-controls">
+        <button class="ctrl-btn" onclick="prevTrack()" title="Previous">&#9198;</button>
+        <button class="ctrl-btn play-btn" id="play-btn" onclick="togglePlay()" title="Play">&#9654;</button>
+        <button class="ctrl-btn" onclick="nextTrack()" title="Next">&#9197;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title reveal">Our <span>memories</span></h2>
+    <div class="gallery-grid reveal">
+      <div class="gallery-cell" style="background: linear-gradient(135deg, #fde8ec, #f9c8d2);">
+        <div class="cell-inner"><div class="cell-icon">🌹</div><p class="cell-label">The day we met</p></div>
+      </div>
+      <div class="gallery-cell" style="background: linear-gradient(135deg, #fdf3e0, #f7e0b0);">
+        <div class="cell-inner"><div class="cell-icon">🌅</div><p class="cell-label">First sunrise together</p></div>
+      </div>
+      <div class="gallery-cell" style="background: linear-gradient(135deg, #e8f4fd, #c8dff7);">
+        <div class="cell-inner"><div class="cell-icon">🌊</div><p class="cell-label">Our favourite escape</p></div>
+      </div>
+      <div class="gallery-cell" style="background: linear-gradient(135deg, #edf8ed, #bfe8bf);">
+        <div class="cell-inner"><div class="cell-icon">🌿</div><p class="cell-label">Long walks, quiet talks</p></div>
+      </div>
+      <div class="gallery-cell" style="background: linear-gradient(135deg, #f4e8fd, #d8b8f5);">
+        <div class="cell-inner"><div class="cell-icon">✨</div><p class="cell-label">Every magical night</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-heart">♡</span>
+  <p>Made with love and a little magic, just for <strong>you</strong>.<br>
+  Every pixel, every word, every heartbeat — <em>yours</em>.</p>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+(function animRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+
+const petalCanvas = document.getElementById('petal-canvas');
+function spawnPetal() {
+  const p = document.createElement('div'); p.className = 'petal';
+  p.style.left = Math.random()*100+'vw';
+  p.style.animationDuration = (7+Math.random()*8)+'s';
+  p.style.animationDelay = (Math.random()*6)+'s';
+  const s = 10+Math.random()*12; p.style.width = s+'px'; p.style.height = (s*1.4)+'px';
+  petalCanvas.appendChild(p); setTimeout(() => p.remove(), 16000);
+}
+for (let i=0;i<12;i++) setTimeout(spawnPetal, i*900);
+setInterval(spawnPetal, 1200);
+
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} }), {threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+let clicks = 0;
+const msgs = ['❤️ Keep going…','💕 More! Yes!','🌹 I love you too!','✨ To infinity…','💖 …and beyond!','🌸 You are my everything!','💝 Forever and always!','🦋 My heart beats only for you…'];
+function heartClick(e) {
+  clicks++;
+  document.getElementById('click-count').textContent = msgs[Math.min(clicks-1, msgs.length-1)];
+  const pop = document.createElement('div'); pop.className = 'pop-heart';
+  pop.textContent = ['♡','💗','💕','💖','🌸','✨'][Math.floor(Math.random()*6)];
+  const rect = document.getElementById('big-heart').getBoundingClientRect();
+  pop.style.left = (e.clientX-rect.left-20)+'px'; pop.style.top = (e.clientY-rect.top-20)+'px';
+  document.getElementById('big-heart').style.position = 'relative';
+  document.getElementById('big-heart').appendChild(pop);
+  setTimeout(() => pop.remove(), 1500);
+}
+
+let playing = false, totalSec = 181, currSec = 0, interval = null;
+function togglePlay() {
+  playing = !playing;
+  document.getElementById('play-btn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+  document.getElementById('vinyl').classList.toggle('playing', playing);
+  if (playing) {
+    interval = setInterval(() => {
+      currSec = Math.min(currSec+1, totalSec);
+      document.getElementById('player-bar-fill').style.width = (currSec/totalSec*100)+'%';
+      document.getElementById('curr-time').textContent = Math.floor(currSec/60)+':'+String(currSec%60).padStart(2,'0');
+      if (currSec >= totalSec) { clearInterval(interval); playing=false; document.getElementById('play-btn').innerHTML='&#9654;'; document.getElementById('vinyl').classList.remove('playing'); currSec=0; }
+    }, 1000);
+  } else clearInterval(interval);
+}
+function prevTrack() { currSec=0; document.getElementById('curr-time').textContent='0:00'; document.getElementById('player-bar-fill').style.width='0%'; }
+function nextTrack() { currSec=0; document.getElementById('curr-time').textContent='0:00'; document.getElementById('player-bar-fill').style.width='0%'; }
+document.getElementById('progress-bar').addEventListener('click', function(e) {
+  const pct = e.offsetX/this.offsetWidth; currSec = Math.round(pct*totalSec);
+  document.getElementById('player-bar-fill').style.width=(pct*100)+'%';
+  document.getElementById('curr-time').textContent=Math.floor(currSec/60)+':'+String(currSec%60).padStart(2,'0');
+});
+</script>
+</body>
+</html>
